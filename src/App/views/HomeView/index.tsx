@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useAddToHomescreenPrompt } from "../AddToHomeScreenView/useAddToHomescreenPrompt";
+// import { useAddToHomescreenPrompt } from "../AddToHomeScreenView/useAddToHomescreenPrompt";
 import { PREVIEW } from "App/previews";
 import ViewOptions, {
   GamesView,
