@@ -8,7 +8,9 @@ import { useWindowService } from "services/window";
 import { _saveTokens, isDev } from "utils";
 const clientId = "17ae74b3a33643239b1b01cc7fa5873c";
 console.log("isDev" + isDev());
-const redirectUri = "http://localhost:3000/";
+const redirectUri = isDev()
+  ? "http://localhost:3000/"
+  : "https://rewound.netlify.app/";
 console.log(redirectUri);
 const scopes = [
   "user-read-currently-playing",
