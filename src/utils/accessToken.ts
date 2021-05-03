@@ -1,5 +1,5 @@
 import querystring from "querystring";
-import { isDev } from "./index";
+// import { isDev } from "./index";
 
 export type TokenResponse = {
   accessToken?: string;
@@ -117,9 +117,8 @@ const _getNewTokens = async (): Promise<TokenResponse> => {
       body: querystring.stringify({
         grant_type: "authorization_code",
         code: code,
-        redirect_uri: isDev()
-          ? "http://localhost:3000/"
-          : "https://rewound.netlify.app/",
+        redirect_uri: "https://rewound.netlify.app/",
+        // redirect_uri: "http://localhost:3000/",
       }),
     });
 
