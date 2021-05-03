@@ -1,46 +1,44 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useAddToHomescreenPrompt } from "../AddToHomeScreenView/useAddToHomescreenPrompt"
-import { PREVIEW } from 'App/previews';
+import React, { useCallback, useEffect, useState } from "react";
+import { useAddToHomescreenPrompt } from "../AddToHomeScreenView/useAddToHomescreenPrompt";
+import { PREVIEW } from "App/previews";
 import ViewOptions, {
   GamesView,
   MusicView,
   NowPlayingView,
   SettingsView,
-} from 'App/views';
-import { SelectableList, SelectableListOption } from 'components';
-import { useScrollHandler } from 'hooks';
-import { useSpotifyService } from 'services/spotify';
+} from "App/views";
+import { SelectableList, SelectableListOption } from "components";
+import { useScrollHandler } from "hooks";
+import { useSpotifyService } from "services/spotify";
 
 const strings = {
-  nowPlaying: "Now Playing"
+  nowPlaying: "Now Playing",
 };
 
 const HomeView = () => {
-  const [prompt, promptToInstall] = useAddToHomescreenPrompt();
-  const [isVisible, setVisibleState] = React.useState(false);
+  // const [prompt, promptToInstall] = useAddToHomescreenPrompt();
+  // const [isVisible, setVisibleState] = React.useState(false);
 
-  const hide = () => setVisibleState(false);
+  // const hide = () => setVisibleState(false);
   const initialOptions: SelectableListOption[] = [
-
     {
       label: "Music",
       value: () => <MusicView />,
       viewId: ViewOptions.music.id,
-      preview: PREVIEW.MUSIC
+      preview: PREVIEW.MUSIC,
     },
     {
       label: "Games",
       value: () => <GamesView />,
       viewId: ViewOptions.games.id,
-      preview: PREVIEW.GAMES
+      preview: PREVIEW.GAMES,
     },
     {
       label: "Settings",
       value: () => <SettingsView />,
       viewId: ViewOptions.settings.id,
-      preview: PREVIEW.SETTINGS
+      preview: PREVIEW.SETTINGS,
     },
-
   ];
 
   const [options, setOptions] = useState(initialOptions);
@@ -52,23 +50,25 @@ const HomeView = () => {
   const showNowPlaying = useCallback(() => {
     if (
       hasNowPlaying &&
-      !options.find(option => option.label === strings.nowPlaying)
+      !options.find((option) => option.label === strings.nowPlaying)
     ) {
       setOptions([
         ...options,
         {
           label: strings.nowPlaying,
           value: () => <NowPlayingView />,
-          preview: PREVIEW.NOW_PLAYING
-        }
+          preview: PREVIEW.NOW_PLAYING,
+        },
       ]);
     }
   }, [options, hasNowPlaying]);
 
   /** Remove the "Now Playing" button from the list of options. */
   const hideNowPlaying = useCallback(() => {
-    if (options.find(option => option.label === strings.nowPlaying)) {
-      setOptions(options.filter(option => option.label !== strings.nowPlaying));
+    if (options.find((option) => option.label === strings.nowPlaying)) {
+      setOptions(
+        options.filter((option) => option.label !== strings.nowPlaying)
+      );
     }
   }, [options]);
 

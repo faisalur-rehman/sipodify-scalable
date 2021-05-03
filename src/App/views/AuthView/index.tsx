@@ -58,7 +58,7 @@ const hash = window.location.hash
     return initial;
   }, {});
 window.location.hash = "";
-
+console.log(hash);
 const AuthView = () => {
   const { resetWindowStack } = useWindowService();
   const [options] = useState(initialOptions);
