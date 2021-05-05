@@ -2,7 +2,6 @@ import React, { createContext, useCallback, useContext, useState } from "react";
 
 import { PREVIEW } from "App/previews";
 import ViewOptions, * as Views from "App/views";
-import { count } from "console";
 
 export type WindowOptions<TComponent extends React.ComponentType<any> = any> = {
   /** A unique ID for each window. */
