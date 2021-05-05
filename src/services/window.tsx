@@ -1,7 +1,8 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useState } from "react";
 
-import { PREVIEW } from 'App/previews';
-import ViewOptions, * as Views from 'App/views';
+import { PREVIEW } from "App/previews";
+import ViewOptions, * as Views from "App/views";
+import { count } from "console";
 
 export type WindowOptions<TComponent extends React.ComponentType<any> = any> = {
   /** A unique ID for each window. */
@@ -33,9 +34,9 @@ const WindowContext = createContext<WindowContextType>([
   {
     windowStack: [],
     headerTitle: "iPod.js",
-    preview: PREVIEW.MUSIC
+    preview: PREVIEW.MUSIC,
   },
-  () => {}
+  () => {},
 ]);
 
 export interface WindowServiceHook {
@@ -73,10 +74,10 @@ export const useWindowService = (): WindowServiceHook => {
 
   const showWindow = useCallback(
     (window: WindowOptions) => {
-      setWindowState(prevWindowState => ({
+      setWindowState((prevWindowState) => ({
         ...prevWindowState,
         windowStack: [...prevWindowState.windowStack, window],
-        headerTitle: ViewOptions[window.id].title
+        headerTitle: ViewOptions[window.id].title,
       }));
     },
     [setWindowState]
@@ -84,19 +85,23 @@ export const useWindowService = (): WindowServiceHook => {
 
   const hideWindow = useCallback(
     (id?: string) => {
-      if (windowState.windowStack.length === 1) return;
-      setWindowState(prevWindowState => {
-        const newWindowStack = id
-          ? prevWindowState.windowStack.filter(
-              (window: WindowOptions) => window.id !== id
-            )
-          : prevWindowState.windowStack.slice(0, -1);
-//
+      if (windowState.windowStack.length === 1) {
+        return;
+      }
+      setWindowState((prevWindowState) => {
+        console.log("id", prevWindowState);
+        const newWindowStack =
+          prevWindowState.windowStack.length > 1
+            ? prevWindowState.windowStack.slice(0, -1)
+            : prevWindowState.windowStack.slice(0);
+
+        console.log("new", prevWindowState.windowStack.slice(0, -1));
         return {
           ...prevWindowState,
           windowStack: newWindowStack,
+
           headerTitle:
-            ViewOptions[newWindowStack[newWindowStack.length - 1].id].title
+            ViewOptions[newWindowStack[newWindowStack.length - 1].id].title,
         };
       });
     },
@@ -105,10 +110,10 @@ export const useWindowService = (): WindowServiceHook => {
 
   const resetWindowStack = useCallback(
     (window: WindowOptions) => {
-      setWindowState(prevWindowState => ({
+      setWindowState((prevWindowState) => ({
         ...prevWindowState,
         windowStack: [window],
-        headerTitle: ViewOptions[window.id].title
+        headerTitle: ViewOptions[window.id].title,
       }));
     },
     [setWindowState]
@@ -127,7 +132,7 @@ export const useWindowService = (): WindowServiceHook => {
     (title?: string) => {
       setWindowState({
         ...windowState,
-        headerTitle: title
+        headerTitle: title,
       });
     },
     [setWindowState, windowState]
@@ -137,7 +142,7 @@ export const useWindowService = (): WindowServiceHook => {
     (preview: PREVIEW) => {
       setWindowState({
         ...windowState,
-        preview
+        preview,
       });
     },
     [setWindowState, windowState]
@@ -152,7 +157,7 @@ export const useWindowService = (): WindowServiceHook => {
     headerTitle: windowState.headerTitle,
     preview: windowState.preview,
     setHeaderTitle,
-    setPreview
+    setPreview,
   };
 };
 
@@ -165,14 +170,14 @@ const WindowProvider = ({ children }: Props) => {
     {
       id: ViewOptions.auth.id,
       type: Views.WINDOW_TYPE.SPLIT,
-      component: Views.AuthView
-    }
+      component: Views.AuthView,
+    },
   ];
 
   const [windowState, setWindowState] = useState<WindowState>({
     windowStack,
     headerTitle: ViewOptions.auth.title,
-    preview: PREVIEW.MUSIC
+    preview: PREVIEW.MUSIC,
   });
 
   return (

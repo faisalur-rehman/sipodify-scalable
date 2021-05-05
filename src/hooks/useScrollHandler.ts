@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from "react";
 
-import ViewOptions from 'App/views';
-import { SelectableListOption } from 'components';
-import { useWindowService } from 'services/window';
+import ViewOptions from "App/views";
+import { SelectableListOption } from "components";
+import { useWindowService } from "services/window";
 
-import useEventListener from './useEventListener';
+import useEventListener from "./useEventListener";
 // import useSpotifyPlayer from './useSpotifyPlayer';
 //
 
@@ -21,7 +21,7 @@ const useScrollHandler = (
   const timeoutIdRef = useRef<any>();
   /** Only fire events on the top-most view. */
   const isActive = windowStack[windowStack.length - 1].id === id;
-
+  // const isActive = true;
 
   /** Wait until the user stops scrolling to check for a new preview to display. */
   const checkForPreview = useCallback(
@@ -50,7 +50,6 @@ const useScrollHandler = (
   //   let audio = new Audio("/click.m4a");
   //   audio.play();
   // },[]);
-
 
   const forwardScroll = useCallback(() => {
     if (index < options.length - 1 && isActive) {
@@ -83,12 +82,12 @@ const useScrollHandler = (
       showWindow({
         type: viewOptions.type,
         id: option.viewId,
-        component: View
+        component: View,
       });
     }
     if (option.uris) {
-      if (option.songIndex!=null){
-        console.log('URI:'+option.uris[option.songIndex]+':play')
+      if (option.songIndex != null) {
+        console.log("URI:" + option.uris[option.songIndex] + ":play");
         window.open(option.uris[option.songIndex], "_self");
       }
       // play(option.uris, option.songIndex);

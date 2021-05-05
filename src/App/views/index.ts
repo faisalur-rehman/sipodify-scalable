@@ -17,7 +17,7 @@ export { default as SettingsView } from "./SettingsView";
 export enum WINDOW_TYPE {
   SPLIT = "SPLIT",
   FULL = "FULL",
-  COVER_FLOW = "COVER_FLOW"
+  COVER_FLOW = "COVER_FLOW",
 }
 
 type ViewOption = {
@@ -33,16 +33,30 @@ export const ViewOptions: Record<string, ViewOption> = {
   music: { id: "music", title: "Music", type: WINDOW_TYPE.SPLIT },
   games: { id: "games", title: "Games", type: WINDOW_TYPE.SPLIT },
   settings: { id: "settings", title: "Settings", type: WINDOW_TYPE.SPLIT },
-  addToHomeScreen: { id: "addToHomeScreen", title: "Add to Home Screen", type: WINDOW_TYPE.SPLIT },
+  addToHomeScreen: {
+    id: "addToHomeScreen",
+    title: "Add to Home Screen",
+    type: WINDOW_TYPE.SPLIT,
+  },
   // Fullscreen Views
   about: { id: "about", title: "About", type: WINDOW_TYPE.FULL },
   artists: { id: "artists", title: "Artists", type: WINDOW_TYPE.FULL },
   artist: { id: "artist", title: "Artist", type: WINDOW_TYPE.FULL },
-  topArtists: { id: "topArtists", title: "Top Artists", type: WINDOW_TYPE.FULL },
+  topArtists: {
+    id: "topArtists",
+    title: "Top Artists",
+    type: WINDOW_TYPE.FULL,
+  },
   topTracks: { id: "topTracks", title: "Top Tracks", type: WINDOW_TYPE.FULL },
   albums: { id: "albums", title: "Albums", type: WINDOW_TYPE.FULL },
   album: { id: "album", title: "Album", type: WINDOW_TYPE.FULL },
-  nowPlaying: { id: "nowPlaying",title: "Now Playing", type: WINDOW_TYPE.FULL},
+  // genre: { id: "genre", title: "Genre", type: WINDOW_TYPE.FULL },
+
+  nowPlaying: {
+    id: "nowPlaying",
+    title: "Now Playing",
+    type: WINDOW_TYPE.FULL,
+  },
   playlists: { id: "playlists", title: "Playlists", type: WINDOW_TYPE.FULL },
   playlist: { id: "playlist", title: "Playlist", type: WINDOW_TYPE.FULL },
   brickGame: { id: "brickGame", title: "Brick", type: WINDOW_TYPE.FULL },
@@ -52,8 +66,8 @@ export const ViewOptions: Record<string, ViewOption> = {
   coverFlow: {
     id: "coverFlow",
     title: "Cover Flow",
-    type: WINDOW_TYPE.COVER_FLOW
-  }
+    type: WINDOW_TYPE.COVER_FLOW,
+  },
 };
 
 export default ViewOptions;

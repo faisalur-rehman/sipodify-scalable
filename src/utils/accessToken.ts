@@ -117,8 +117,8 @@ const _getNewTokens = async (): Promise<TokenResponse> => {
       body: querystring.stringify({
         grant_type: "authorization_code",
         code: code,
-        redirect_uri: "https://rewound.netlify.app/",
-        // redirect_uri: "http://localhost:3000/",
+        // redirect_uri: "https://rewound.netlify.app/",
+        redirect_uri: "http://localhost:3000/",
       }),
     });
 
