@@ -8,8 +8,8 @@ import { useWindowService } from "services/window";
 import { _saveTokens, isDev } from "utils";
 const clientId = "17ae74b3a33643239b1b01cc7fa5873c";
 console.log("isDev" + isDev());
-// const redirectUri = "https://rewound.netlify.app/";
-const redirectUri = "http://localhost:3000/";
+const redirectUri = "https://rewound.netlify.app/";
+// const redirectUri = "http://localhost:3000/";
 
 console.log(redirectUri);
 const scopes = [
